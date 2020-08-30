@@ -12,7 +12,7 @@ import httpx
 import mousebender.simple
 
 from starlette.applications import Starlette
-from starlette.responses import Response
+from starlette.responses import RedirectResponse, Response
 from starlette.templating import Jinja2Templates
 
 
@@ -139,6 +139,15 @@ async def _iter_simple_entries(project):
         entries.append(entry_cls(project=project, link=link))
 
     return entries
+
+
+@app.route("/")
+async def index(request):
+    if "project" in request.query_params:
+        project = request.query_params["project"]
+        url = request.url_for("project", project=project)
+        return RedirectResponse(url=url)
+    return templates.TemplateResponse("index.jinja2", {"request": request})
 
 
 @app.route("/{project}/")
