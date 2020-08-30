@@ -1,6 +1,7 @@
 import contextlib
 import dataclasses
 import io
+import os
 import pathlib
 import tarfile
 import tempfile
@@ -17,7 +18,7 @@ from starlette.templating import Jinja2Templates
 
 templates = Jinja2Templates(directory="templates")
 
-app = Starlette(debug=True)
+app = Starlette(debug=bool(os.environ.get("DEBUG")))
 
 
 @async_lru.alru_cache(maxsize=128)
