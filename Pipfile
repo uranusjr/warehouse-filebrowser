@@ -1,0 +1,7 @@
+[packages]
+async-lru = "*"
+httpx = "*"
+jinja2 = "*"
+mousebender = "*"
+starlette = "*"
+uvicorn = "*"
