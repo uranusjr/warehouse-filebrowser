@@ -5,3 +5,6 @@ jinja2 = "*"
 mousebender = "*"
 starlette = "*"
 uvicorn = "*"
+
+[scripts]
+server = "uvicorn --reload warehousefilebrowser:app"
