@@ -7,4 +7,4 @@ starlette = "*"
 uvicorn = "*"
 
 [scripts]
-server = "uvicorn --reload warehousefilebrowser:app"
+serve = "uvicorn --reload warehousefilebrowser:app"
