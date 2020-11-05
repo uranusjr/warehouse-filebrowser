@@ -5,6 +5,7 @@ import os
 import pathlib
 import tarfile
 import tempfile
+import typing
 import zipfile
 
 import async_lru
@@ -113,7 +114,7 @@ class ZipSdist(_Entry):
 
 
 class UnsupportedEntry(_Entry):
-    useful_filenames = []
+    useful_filenames: typing.List[str] = []
 
     async def read_file(self, filename):
         raise FileNotFoundError
@@ -177,4 +178,4 @@ async def dist_file(request):
         content = await entry.read_file(request.path_params["arcname"])
     except FileNotFoundError:
         return Response("dist content not found", 404)
-    return Response(content)
+    return Response(content, media_type="text/plain")
